@@ -1,0 +1,165 @@
+@startuml Database Project Class Diagram
+
+' Style settings
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+' Main class
+class Main {
+    +main(String[] args): void
+}
+
+' Entity classes
+class Customer {
+    -customerNumber: int
+    -customerName: String
+    -contactLastName: String
+    -contactFirstName: String
+    -phone: String
+    -addressLine1: String
+    -addressLine2: String
+    -city: String
+    -state: String
+    -postalCode: String
+    -country: String
+    -salesRepEmployeeNumber: int
+    -creditLimit: double
+    +getCustomerNumber(): int
+    +setCustomerNumber(int): void
+    +getCustomerName(): String
+    +setCustomerName(String): void
+    ' ... other getters and setters
+}
+
+class Employee {
+    -employeeNumber: int
+    -lastName: String
+    -firstName: String
+    -extension: String
+    -email: String
+    -officeCode: String
+    -reportsTo: int
+    -jobTitle: String
+    +getEmployeeNumber(): int
+    +setEmployeeNumber(int): void
+    +getLastName(): String
+    +setLastName(String): void
+    ' ... other getters and setters
+}
+
+class Office {
+    -officeCode: String
+    -city: String
+    -phone: String
+    -addressLine1: String
+    -addressLine2: String
+    -state: String
+    -country: String
+    -postalCode: String
+    -territory: String
+    +getOfficeCode(): String
+    +setOfficeCode(String): void
+    +getCity(): String
+    +setCity(String): void
+    ' ... other getters and setters
+}
+
+class Order {
+    -orderNumber: int
+    -orderDate: Date
+    -requiredDate: Date
+    -shippedDate: Date
+    -status: String
+    -comments: String
+    -customerNumber: int
+    +getOrderNumber(): int
+    +setOrderNumber(int): void
+    +getOrderDate(): Date
+    +setOrderDate(Date): void
+    ' ... other getters and setters
+}
+
+class OrderDetail {
+    -orderNumber: int
+    -productCode: String
+    -quantityOrdered: int
+    -priceEach: double
+    -orderLineNumber: int
+    +getOrderNumber(): int
+    +setOrderNumber(int): void
+    +getProductCode(): String
+    +setProductCode(String): void
+    ' ... other getters and setters
+}
+
+class OrderDetailPK {
+    -orderNumber: int
+    -productCode: String
+    +equals(Object): boolean
+    +hashCode(): int
+}
+
+class Payment {
+    -customerNumber: int
+    -checkNumber: String
+    -paymentDate: Date
+    -amount: double
+    +getCustomerNumber(): int
+    +setCustomerNumber(int): void
+    +getCheckNumber(): String
+    +setCheckNumber(String): void
+    ' ... other getters and setters
+}
+
+class PaymentPK {
+    -customerNumber: int
+    -checkNumber: String
+    +equals(Object): boolean
+    +hashCode(): int
+}
+
+class Product {
+    -productCode: String
+    -productName: String
+    -productLine: String
+    -productScale: String
+    -productVendor: String
+    -productDescription: String
+    -quantityInStock: int
+    -buyPrice: double
+    -MSRP: double
+    +getProductCode(): String
+    +setProductCode(String): void
+    +getProductName(): String
+    +setProductName(String): void
+    ' ... other getters and setters
+}
+
+class ProductLine {
+    -productLine: String
+    -textDescription: String
+    -htmlDescription: String
+    -image: byte[]
+    +getProductLine(): String
+    +setProductLine(String): void
+    +getTextDescription(): String
+    +setTextDescription(String): void
+    ' ... other getters and setters
+}
+
+' Relationships
+Customer "1" -- "*" Order : places >
+Customer "1" -- "*" Payment : makes >
+Employee "1" -- "*" Customer : serves >
+Office "1" -- "*" Employee : employs >
+Order "1" -- "*" OrderDetail : contains >
+Product "1" -- "*" OrderDetail : included in >
+ProductLine "1" -- "*" Product : categorizes >
+OrderDetailPK -- OrderDetail : identifies >
+PaymentPK -- Payment : identifies >
+
+@enduml 
