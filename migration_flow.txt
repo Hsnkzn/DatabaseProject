@@ -1,0 +1,86 @@
++----------------------------------------------------------------------------------------+
+|                                  DATABASE MIGRATION FLOW                                |
++----------------------------------------------------------------------------------------+
+
+[INITIALIZATION PHASE]
+    +----------------+     +-----------------+
+    | SQL Server DB  |     | ObjectDB Target |
+    | (Source)       |     | (Destination)   |
+    +----------------+     +-----------------+
+            |                      |
+            v                      v
+    +----------------+     +-----------------+
+    | Connect to DB  |     | Initialize      |
+    | Read Data      |     | Begin Transaction|
+    +----------------+     +-----------------+
+            |                      |
+            v                      v
+[DATA READING PHASE]        [DATA TRANSFORMATION]
+    +----------------+     +-----------------+
+    | 1. Offices     | --> | Create Maps:    |
+    | 2. Employees   |     | - Office Map    |
+    | 3. Customers   |     | - Employee Map  |
+    | 4. ProductLines|     | - Customer Map  |
+    | 5. Products    |     | - ProductLine Map|
+    | 6. Orders      |     | - Product Map   |
+    | 7. OrderDetails|     | - Order Map     |
+    | 8. Payments    |     +-----------------+
+    +----------------+             |
+            |                      v
+            |              [DATA PERSISTENCE]
+            |              +-----------------+
+            |              | Clear Existing  |
+            |              | Data            |
+            |              +-----------------+
+            |                      |
+            |                      v
+            |              +-----------------+
+            |              | Batch Persist:  |
+            |              | 1. Offices      |
+            |              | 2. Employees    |
+            |              | 3. Customers    |
+            |              | 4. ProductLines |
+            |              | 5. Products     |
+            |              | 6. Orders       |
+            |              | 7. OrderDetails |
+            |              | 8. Payments     |
+            |              +-----------------+
+            |                      |
+            |                      v
+            |              [VERIFICATION PHASE]
+            |              +-----------------+
+            |              | Count Records   |
+            |              | Display Samples |
+            |              | Verify Relations|
+            |              +-----------------+
+            |                      |
+            |                      v
+            |              +-----------------+
+            |              | Commit          |
+            |              | Transaction     |
+            |              +-----------------+
+            |                      |
+            |                      v
+            |              [ERROR HANDLING]
+            |              +-----------------+
+            |              | Rollback if     |
+            |              | Error Occurs    |
+            |              +-----------------+
+            |                      |
+            |                      v
+            |              +-----------------+
+            |              | Close           |
+            |              | Connections     |
+            |              +-----------------+
+
+[DEPENDENCIES]
+Offices ─────┐
+             ├──> Employees ─────┐
+                                ├──> Customers ─────┐
+                                                   ├──> Orders ─────┐
+ProductLines ─┐                  │                  │               │
+              ├──> Products ─────┘                  │               │
+                                                   │               │
+                                                   └──> Payments    │
+                                                                   │
+                                                   └──> OrderDetails 

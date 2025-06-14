@@ -82,10 +82,58 @@
    - Step 4: Verify data integrity
 
 4. Required Screenshots:
-   \\**Database Schema Diagram**//
+   \\**Database Schema Diagram**//  class diagram
    \\**Migration Process Flow**//
-   \\**Sample Data in Source Database**//
-   \\**Sample Data in Target Database**//
-   \\**Migration Execution Results**//
+   \\**Sample Data in Source Database**//  screenshot of sample of data in ms sql server
+   \\**Sample Data in Target Database**//   screenshot of sample of data in object db explorer
+   \\**Migration Execution Results**//  the output of the execution of the code 
 
-Note: Please provide the requested screenshots to complete the documentation. 
+
+Migration Process Flow:::
+
+1- Initialization Phase
+    -Connect to SQL Server (Source)
+    -Initialize ObjectDB connection (Target)
+    -Begin transaction
+
+2- Data Reading Phase (from SQL Server)
+    -Read Offices first (independent entity)
+    -Read Employees (with two passes for manager relationships)
+    -Read Customers (depends on Employees)
+    -Read ProductLines (independent entity)
+    -Read Products (depends on ProductLines)
+    -Read Orders (depends on Customers)
+    -Read OrderDetails (depends on Orders and Products)
+    -Read Payments (depends on Customers)
+
+3- Data Transformation Phase
+    -Create mapping collections for relationships
+    -Office Map
+    -Employee Map
+    -Customer Map
+    -ProductLine Map
+    -Product Map
+    -Order Map
+
+4- Data Persistence Phase (to ObjectDB)
+    .Clear existing data
+    .Batch persist in correct order:
+        -Offices
+        -Employees
+        -Customers
+        -ProductLines
+        -Products
+        -Orders
+        -OrderDetails
+        -Payments
+
+5- Verification Phase
+    -Count records for each entity type
+    -Display sample data
+    -Verify relationships
+    -Commit transaction
+
+6- Error Handling
+    -Rollback on failure
+    -Close connections
+    -Error logging
