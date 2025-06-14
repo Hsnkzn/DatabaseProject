@@ -1,0 +1,91 @@
+# SMarket Database Migration Project Report
+
+## Requirements
+1. Technical Requirements:
+   - Java 11 or higher
+   - Maven for dependency management
+   - SQL Server Database (Source)
+   - ObjectDB (Target)
+   - Required Libraries:
+     * Microsoft SQL Server JDBC Driver (12.6.2)
+     * JPA API (2.2)
+     * Hibernate Core (5.6.15.Final)
+     * ObjectDB (2.9.3)
+     * Jackson for JSON processing (2.19.0)
+
+2. Functional Requirements:
+   - Data migration from SQL Server to ObjectDB
+   - Support for multiple entity types:
+     * Customers
+     * Products
+     * Orders
+     * Order Details
+     * Payments
+     * Employees
+     * Offices
+     * Product Lines
+   - Data verification and validation
+   - Error handling and logging
+
+## Data Integration
+1. Source Database (SQL Server):
+   - Tables:
+     * Customers
+     * Products
+     * Orders
+     * OrderDetails
+     * Payments
+     * Employees
+     * Offices
+     * ProductLines
+
+2. Target Database (ObjectDB):
+   - Object-oriented database
+   - Supports JPA annotations
+   - Direct object persistence
+
+3. Integration Flow:
+   - Read data from SQL Server using JDBC
+   - Transform data to JPA entities
+   - Persist objects to ObjectDB
+   - Verify data integrity after migration
+
+## Solution
+1. Architecture:
+   - Java-based migration tool
+   - JPA for object-relational mapping
+   - Modular design with separate classes for:
+     * Data reading (ReadFromSMarketDB.java)
+     * Data saving (SaveToObjectDB.java)
+     * Migration orchestration (DatabaseMigration.java)
+     * Verification (VerifyMigration.java)
+
+2. Key Components:
+   - Entity Classes:
+     * Customer.java
+     * Product.java
+     * Order.java
+     * OrderDetail.java
+     * Payment.java
+     * Employee.java
+     * Office.java
+     * ProductLine.java
+   
+   - Primary Key Classes:
+     * OrderDetailPK.java
+     * PaymentPK.java
+
+3. Migration Process:
+   - Step 1: Read data from SQL Server
+   - Step 2: Transform to JPA entities
+   - Step 3: Save to ObjectDB
+   - Step 4: Verify data integrity
+
+4. Required Screenshots:
+   \\**Database Schema Diagram**//
+   \\**Migration Process Flow**//
+   \\**Sample Data in Source Database**//
+   \\**Sample Data in Target Database**//
+   \\**Migration Execution Results**//
+
+Note: Please provide the requested screenshots to complete the documentation. 
