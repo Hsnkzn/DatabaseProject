@@ -1,82 +1,40 @@
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@IdClass(OrderDetailPK.class)
+@Table(name = "OrderDetails")
 public class OrderDetail {
     @Id
-    private int orderNumber;
-
-    @Id
-    private String productCode;
-
-    private int quantityOrdered;
-    private double priceEach;
-    private int orderLineNumber;
-
     @ManyToOne
-    @JoinColumn(name = "orderNumber", insertable = false, updatable = false)
+    @JoinColumn(name = "orderNumber")
     private Order order;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "productCode", insertable = false, updatable = false)
+    @JoinColumn(name = "productCode")
     private Product product;
 
-    // Getters and setters
+    @Column(name = "quantityOrdered")
+    private Integer quantityOrdered;
 
-    public int getOrderNumber() {
-        return orderNumber;
-    }
+    @Column(name = "priceEach")
+    private Double priceEach;
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
+    @Column(name = "orderLineNumber")
+    private Integer orderLineNumber;
 
-    public String getProductCode() {
-        return productCode;
-    }
+    // Getters and Setters
+    public Order getOrder() { return order; }
+    public void setOrder(Order order) { this.order = order; }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
 
-    public int getQuantityOrdered() {
-        return quantityOrdered;
-    }
+    public Integer getQuantityOrdered() { return quantityOrdered; }
+    public void setQuantityOrdered(Integer quantityOrdered) { this.quantityOrdered = quantityOrdered; }
 
-    public void setQuantityOrdered(int quantityOrdered) {
-        this.quantityOrdered = quantityOrdered;
-    }
+    public Double getPriceEach() { return priceEach; }
+    public void setPriceEach(Double priceEach) { this.priceEach = priceEach; }
 
-    public double getPriceEach() {
-        return priceEach;
-    }
-
-    public void setPriceEach(double priceEach) {
-        this.priceEach = priceEach;
-    }
-
-    public int getOrderLineNumber() {
-        return orderLineNumber;
-    }
-
-    public void setOrderLineNumber(int orderLineNumber) {
-        this.orderLineNumber = orderLineNumber;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+    public Integer getOrderLineNumber() { return orderLineNumber; }
+    public void setOrderLineNumber(Integer orderLineNumber) { this.orderLineNumber = orderLineNumber; }
 }

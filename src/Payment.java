@@ -1,61 +1,34 @@
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
-@IdClass(PaymentPK.class)
+@Table(name = "Payments")
 public class Payment {
     @Id
-    private int customerNumber;
-
-    @Id
-    private String checkNumber;
-
-    private Date paymentDate;
-    private double amount;
-
     @ManyToOne
-    @JoinColumn(name = "customerNumber", insertable = false, updatable = false)
+    @JoinColumn(name = "customerNumber")
     private Customer customer;
 
-    // Getters and setters
+    @Id
+    @Column(name = "checkNumber")
+    private String checkNumber;
 
-    public int getCustomerNumber() {
-        return customerNumber;
-    }
+    @Column(name = "paymentDate")
+    private Date paymentDate;
 
-    public void setCustomerNumber(int customerNumber) {
-        this.customerNumber = customerNumber;
-    }
+    @Column(name = "amount")
+    private Double amount;
 
-    public String getCheckNumber() {
-        return checkNumber;
-    }
+    // Getters and Setters
+    public Customer getCustomer() { return customer; }
+    public void setCustomer(Customer customer) { this.customer = customer; }
 
-    public void setCheckNumber(String checkNumber) {
-        this.checkNumber = checkNumber;
-    }
+    public String getCheckNumber() { return checkNumber; }
+    public void setCheckNumber(String checkNumber) { this.checkNumber = checkNumber; }
 
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
+    public Date getPaymentDate() { return paymentDate; }
+    public void setPaymentDate(Date paymentDate) { this.paymentDate = paymentDate; }
 
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+    public Double getAmount() { return amount; }
+    public void setAmount(Double amount) { this.amount = amount; }
 }

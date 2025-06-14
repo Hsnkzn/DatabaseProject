@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="objectdb-2.9.3">
+  <library name="explorer-2.9.3">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../uni/M1/Semester 2/info 409 advanced database/project/objectdb-2.9.3/bin/explorer-2.9.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/../uni/M1/Semester 2/info 409 advanced database/project/objectdb-2.9.3/bin/javax.persistence-api-2.2.jar!/" />
@@ -8,6 +8,7 @@
       <root url="jar://$PROJECT_DIR$/../uni/M1/Semester 2/info 409 advanced database/project/topic 4 project/jackson-annotations-2.19.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/../uni/M1/Semester 2/info 409 advanced database/project/topic 4 project/jackson-core-2.19.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/../uni/M1/Semester 2/info 409 advanced database/project/topic 4 project/jackson-databind-2.19.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../uni/M1/Semester 2/info 409 advanced database/project/topic 4 project/sqljdbc_12.10/enu/jars/mssql-jdbc-12.10.0.jre11.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
