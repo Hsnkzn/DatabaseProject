@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="javax.persistence-api-2.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Project/javax.transaction-api-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Project/jackson-core-2.19.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Project/jackson-databind-2.19.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Project/explorer-2.9.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Project/objectdb-2.9.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Project/jackson-annotations-2.19.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Project/javax.persistence-api-2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
